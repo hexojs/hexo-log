@@ -25,7 +25,8 @@
   "license": "MIT",
   "dependencies": {
     "bunyan": "^1.5.1",
-    "chalk": "^1.1.1"
+    "chalk": "^1.1.1",
+    "moment": "^2.11.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
