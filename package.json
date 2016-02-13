@@ -25,8 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "bunyan": "^1.5.1",
-    "chalk": "^1.1.1",
-    "moment": "^2.11.2"
+    "chalk": "^1.1.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -36,6 +35,8 @@
     "istanbul": "^0.4.2",
     "jscs": "^2.9.0",
     "jscs-preset-hexo": "^1.0.1",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "rewire": "^2.5.1",
+    "sinon": "^1.17.3"
   }
 }
