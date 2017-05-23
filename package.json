@@ -21,7 +21,10 @@
     "framework",
     "hexo"
   ],
-  "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
+  "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",  
+  "maintainers": [
+    "Abner Chou <hi@abnerchou.me> (http://abnerchou.me)"
+    ],
   "license": "MIT",
   "dependencies": {
     "bunyan": "^1.5.1",
@@ -31,7 +34,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
     "eslint": "^1.10.3",
-    "eslint-config-hexo": "^1.0.2",
+    "eslint-config-hexo": "^1.0.6",
     "istanbul": "^0.4.2",
     "jscs": "^2.9.0",
     "jscs-preset-hexo": "^1.0.1",
