@@ -2,7 +2,7 @@
   "name": "hexo-log",
   "version": "0.2.0",
   "description": "Logger for Hexo",
-  "main": "lib/log",
+  "main": "lib/log.js",
   "scripts": {
     "eslint": "eslint .",
     "test": "mocha test/index.js",
@@ -11,6 +11,9 @@
   "directories": {
     "lib": "./lib"
   },
+  "files": [
+    "lib/"
+  ],
   "repository": "hexojs/hexo-log",
   "homepage": "http://hexo.io/",
   "keywords": [
@@ -23,7 +26,7 @@
   "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",  
   "maintainers": [
     "Abner Chou <hi@abnerchou.me> (http://abnerchou.me)"
-    ],
+  ],
   "license": "MIT",
   "dependencies": {
     "hexo-bunyan": "^1.0.0",
