@@ -9,7 +9,7 @@ describe('hexo-log', () => {
   const loggerModule = rewire('../lib/log');
 
   it('add alias for levels', () => {
-    let log = logger();
+    const log = logger();
 
     log.d.should.eql(log.debug);
     log.i.should.eql(log.info);
@@ -19,31 +19,31 @@ describe('hexo-log', () => {
   });
 
   it('default name is hexo', () => {
-    let log = logger();
+    const log = logger();
 
     log.fields.name.should.eql('hexo');
   });
 
   it('options.name', () => {
-    let log = logger({ name: 'foo' });
+    const log = logger({ name: 'foo' });
 
     log.fields.name.should.eql('foo');
   });
 
   it('level should be trace if options.debug is true', () => {
-    let log = logger({ debug: true });
+    const log = logger({ debug: true });
 
     log.streams[0].level.should.eql(10);
   });
 
   it('should add file stream if options.debug is true', () => {
-    let log = logger({ debug: true });
+    const log = logger({ debug: true });
 
     log.streams[1].path.should.eql('debug.log');
   });
 
   it('should remove console stream if options.silent is true', () => {
-    let log = logger({ silent: true });
+    const log = logger({ silent: true });
 
     log.streams.length.should.eql(0);
   });
