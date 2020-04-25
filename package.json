@@ -29,7 +29,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "hexo-bunyan": "^2.0.0",
     "chalk": "^3.0.0"
   },
   "devDependencies": {
@@ -43,6 +42,6 @@
     "sinon": "^8.0.1"
   },
   "engines": {
-    "node": ">=8.6.0"
+    "node": ">=10.13.0"
   }
 }
