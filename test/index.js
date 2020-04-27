@@ -313,39 +313,35 @@ describe('hexo-log', () => {
 });
 
 describe('hexo-log example', () => {
+  const log = logger({ debug: true });
+  const log2 = logger();
   it('log.trace()', () => {
-    const log = logger({ debug: true });
-
     log.trace('Hello, World!');
+    log2.trace('Hello, World!');
   });
 
   it('log.debug()', () => {
-    const log = logger({ debug: true });
-
     log.debug('Hello, World!');
+    log2.debug('Hello, World!');
   });
 
   it('log.info()', () => {
-    const log = logger({ debug: true });
-
     log.info('Hello, World!');
+    log2.info('Hello, World!');
   });
 
   it('log.warn()', () => {
-    const log = logger({ debug: true });
-
     log.warn('Hello, World!');
+    log2.warn('Hello, World!');
   });
 
   it('log.error()', () => {
-    const log = logger({ debug: true });
-
     log.error('Hello, World!');
+    log2.error('Hello, World!');
   });
 
   it('log.fatal()', () => {
-    const log = logger({ debug: true });
-
     log.fatal('Hello, World!');
+    log2.fatal('Hello, World!');
   });
 });
