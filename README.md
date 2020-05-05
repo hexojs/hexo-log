@@ -25,8 +25,8 @@ log.info('Hello world');
 
 Option | Description | Default
 --- | --- | ---
-`debug` | Display debug message and save log to `debug.log` file. | `false`
-`silent` | Don't display message in console. | `false`
+`debug` | Display debug message. | `false`
+`silent` | Don't display any message in console. | `false`
 
 ## License
 
