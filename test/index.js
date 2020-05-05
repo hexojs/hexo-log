@@ -281,7 +281,7 @@ describe('hexo-log', () => {
     spy.args[0][0].should.contain(now.toISOString().substring(11, 23));
   });
 
-  it('options.silent - should ignore those level lower than warn', () => {
+  it('options.silent - should not display anything', () => {
     const consoleTraceSpy = sinon.spy();
     const consoleDebugSpy = sinon.spy();
     const consoleInfoSpy = sinon.spy();
@@ -307,8 +307,8 @@ describe('hexo-log', () => {
     consoleTraceSpy.called.should.be.false;
     consoleDebugSpy.called.should.be.false;
     consoleInfoSpy.called.should.be.false;
-    consoleWarnSpy.calledOnce.should.be.true;
-    consoleErrorSpy.calledTwice.should.be.true;
+    consoleWarnSpy.calledOnce.should.be.false;
+    consoleErrorSpy.calledTwice.should.be.false;
   });
 });
 
