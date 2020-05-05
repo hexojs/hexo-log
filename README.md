@@ -31,5 +31,3 @@ Option | Description | Default
 ## License
 
 MIT
-
-[bunyan]: https://github.com/trentm/node-bunyan
