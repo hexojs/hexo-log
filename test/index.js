@@ -1,12 +1,37 @@
 'use strict';
 
-const should = require('chai').should(); // eslint-disable-line
+require('chai').should();
 const rewire = require('rewire');
 const sinon = require('sinon');
 
+const noop = () => {};
+const fakeConsole = {
+  trace: noop,
+  debug: noop,
+  info: noop,
+  warn: noop,
+  error: noop
+};
+const fakeProcess = {
+  process: {
+    stderr: {
+      write: noop
+    },
+    stdout: {
+      write: noop
+    }
+  }
+};
+
+const logger = require('../lib/log');
+
 describe('hexo-log', () => {
-  const logger = require('../lib/log');
-  const loggerModule = rewire('../lib/log');
+  let loggerModule;
+
+  beforeEach(() => {
+    sinon.restore();
+    loggerModule = rewire('../lib/log');
+  });
 
   it('add alias for levels', () => {
     const log = logger();
@@ -18,39 +43,227 @@ describe('hexo-log', () => {
     log.log.should.eql(log.info);
   });
 
-  it('default name is hexo', () => {
-    const log = logger();
+  it('trace - should call console.trace', () => {
+    const spy = sinon.spy();
+    loggerModule.__set__('console.trace', spy);
 
-    log.fields.name.should.eql('hexo');
+    loggerModule.__with__(fakeProcess)(() => {
+      const log = loggerModule({ debug: true });
+      log.trace('test');
+    });
+
+    spy.called.should.be.true;
   });
 
-  it('options.name', () => {
-    const log = logger({ name: 'foo' });
+  it('trace - with stderr and no stdout', () => {
+    const stdoutSpy = sinon.spy();
+    const stderrSpy = sinon.spy();
 
-    log.fields.name.should.eql('foo');
+    loggerModule.__set__('console', fakeConsole);
+
+    loggerModule.__with__({
+      process: {
+        stderr: {
+          write: stderrSpy
+        },
+        stdout: {
+          write: stdoutSpy
+        }
+      }
+    })(() => {
+      const log = loggerModule({ debug: true });
+      log.trace('test');
+    });
+
+    stderrSpy.called.should.be.true;
+    stdoutSpy.called.should.be.false;
   });
 
-  it('level should be trace if options.debug is true', () => {
-    const log = logger({ debug: true });
+  it('debug - should call console.debug', () => {
+    const spy = sinon.spy();
+    loggerModule.__set__('console.debug', spy);
 
-    log.streams[0].level.should.eql(10);
+    loggerModule.__with__(fakeProcess)(() => {
+      const log = loggerModule({ debug: true });
+      log.debug('test');
+    });
+
+    spy.called.should.be.true;
   });
 
-  it('should add file stream if options.debug is true', () => {
-    const log = logger({ debug: true });
+  it('debug - with stdout and no stderr', () => {
+    const stdoutSpy = sinon.spy();
+    const stderrSpy = sinon.spy();
 
-    log.streams[1].path.should.eql('debug.log');
+    loggerModule.__set__('console', fakeConsole);
+
+    loggerModule.__with__({
+      process: {
+        stderr: {
+          write: stderrSpy
+        },
+        stdout: {
+          write: stdoutSpy
+        }
+      }
+    })(() => {
+      const log = loggerModule({ debug: true });
+      log.debug('test');
+    });
+
+    stderrSpy.called.should.be.false;
+    stdoutSpy.called.should.be.true;
   });
 
-  it('should remove console stream if options.silent is true', () => {
-    const log = logger({ silent: true });
+  it('info - should call console.info', () => {
+    const spy = sinon.spy();
+    loggerModule.__set__('console.info', spy);
 
-    log.streams.length.should.eql(0);
+    loggerModule.__with__(fakeProcess)(() => {
+      const log = loggerModule({ debug: true });
+      log.info('test');
+    });
+
+    spy.called.should.be.true;
   });
 
-  it('should display time if options.debug is true', () => {
+  it('info - with stdout and no stderr', () => {
+    const stdoutSpy = sinon.spy();
+    const stderrSpy = sinon.spy();
+
+    loggerModule.__set__('console', fakeConsole);
+
+    loggerModule.__with__({
+      process: {
+        stderr: {
+          write: stderrSpy
+        },
+        stdout: {
+          write: stdoutSpy
+        }
+      }
+    })(() => {
+      const log = loggerModule({ debug: true });
+      log.info('test');
+    });
+
+    stderrSpy.called.should.be.false;
+    stdoutSpy.called.should.be.true;
+  });
+
+  it('warn - should call console.warn', () => {
+    const spy = sinon.spy();
+    loggerModule.__set__('console.warn', spy);
+
+    loggerModule.__with__(fakeProcess)(() => {
+      const log = loggerModule({ debug: true });
+      log.warn('test');
+    });
+
+    spy.called.should.be.true;
+  });
+
+  it('warn - with stderr and no stdout', () => {
+    const stdoutSpy = sinon.spy();
+    const stderrSpy = sinon.spy();
+
+    loggerModule.__set__('console', fakeConsole);
+
+    loggerModule.__with__({
+      process: {
+        stderr: {
+          write: stderrSpy
+        },
+        stdout: {
+          write: stdoutSpy
+        }
+      }
+    })(() => {
+      const log = loggerModule({ debug: true });
+      log.warn('test');
+    });
+
+    stderrSpy.called.should.be.true;
+    stdoutSpy.called.should.be.false;
+  });
+
+  it('error - should call console.error', () => {
+    const spy = sinon.spy();
+    loggerModule.__set__('console.error', spy);
+
+    loggerModule.__with__(fakeProcess)(() => {
+      const log = loggerModule({ debug: true });
+      log.error('test');
+    });
+
+    spy.called.should.be.true;
+  });
+
+  it('error - with stderr and no stdout', () => {
+    const stdoutSpy = sinon.spy();
+    const stderrSpy = sinon.spy();
+
+    loggerModule.__set__('console', fakeConsole);
+
+    loggerModule.__with__({
+      process: {
+        stderr: {
+          write: stderrSpy
+        },
+        stdout: {
+          write: stdoutSpy
+        }
+      }
+    })(() => {
+      const log = loggerModule({ debug: true });
+      log.error('test');
+    });
+
+    stderrSpy.called.should.be.true;
+    stdoutSpy.called.should.be.false;
+  });
+
+  it('fatal - should call console.error', () => {
+    const spy = sinon.spy();
+    loggerModule.__set__('console.error', spy);
+
+    loggerModule.__with__(fakeProcess)(() => {
+      const log = loggerModule({ debug: true });
+      log.fatal('test');
+    });
+
+    spy.called.should.be.true;
+  });
+
+  it('fatal - with stderr and no stdout', () => {
+    const stdoutSpy = sinon.spy();
+    const stderrSpy = sinon.spy();
+
+    loggerModule.__set__('console', fakeConsole);
+
+    loggerModule.__with__({
+      process: {
+        stderr: {
+          write: stderrSpy
+        },
+        stdout: {
+          write: stdoutSpy
+        }
+      }
+    })(() => {
+      const log = loggerModule({ debug: true });
+      log.fatal('test');
+    });
+
+    stderrSpy.called.should.be.true;
+    stdoutSpy.called.should.be.false;
+  });
+
+  it('options.debug - should display time', () => {
     const spy = sinon.spy();
     const now = new Date();
+
+    loggerModule.__set__('console', fakeConsole);
 
     loggerModule.__with__({
       process: {
@@ -68,20 +281,67 @@ describe('hexo-log', () => {
     spy.args[0][0].should.contain(now.toISOString().substring(11, 23));
   });
 
-  it('should print error to process.stderr stream', () => {
-    const spy = sinon.spy();
+  it('options.silent - should not display anything', () => {
+    const consoleTraceSpy = sinon.spy();
+    const consoleDebugSpy = sinon.spy();
+    const consoleInfoSpy = sinon.spy();
+    const consoleWarnSpy = sinon.spy();
+    const consoleErrorSpy = sinon.spy();
 
-    loggerModule.__with__({
-      process: {
-        stderr: {
-          write: spy
-        }
-      }
-    })(() => {
-      const log = loggerModule();
+    loggerModule.__set__('console.trace', consoleTraceSpy);
+    loggerModule.__set__('console.debug', consoleDebugSpy);
+    loggerModule.__set__('console.info', consoleInfoSpy);
+    loggerModule.__set__('console.warn', consoleWarnSpy);
+    loggerModule.__set__('console.error', consoleErrorSpy);
+
+    loggerModule.__with__(fakeProcess)(() => {
+      const log = loggerModule({ silent: true });
+      log.trace('test');
+      log.debug('test');
+      log.info('test');
+      log.warn('test');
       log.error('test');
+      log.fatal('test');
     });
 
-    spy.calledOnce.should.be.true;
+    consoleTraceSpy.called.should.be.false;
+    consoleDebugSpy.called.should.be.false;
+    consoleInfoSpy.called.should.be.false;
+    consoleWarnSpy.calledOnce.should.be.false;
+    consoleErrorSpy.calledTwice.should.be.false;
+  });
+});
+
+describe('hexo-log example', () => {
+  const log = logger({ debug: true });
+  const log2 = logger();
+  it('log.trace()', () => {
+    log.trace('Hello, World!');
+    log2.trace('Hello, World!');
+  });
+
+  it('log.debug()', () => {
+    log.debug('Hello, World!');
+    log2.debug('Hello, World!');
+  });
+
+  it('log.info()', () => {
+    log.info('Hello, World!');
+    log2.info('Hello, World!');
+  });
+
+  it('log.warn()', () => {
+    log.warn('Hello, World!');
+    log2.warn('Hello, World!');
+  });
+
+  it('log.error()', () => {
+    log.error('Hello, World!');
+    log2.error('Hello, World!');
+  });
+
+  it('log.fatal()', () => {
+    log.fatal('Hello, World!');
+    log2.fatal('Hello, World!');
   });
 });
