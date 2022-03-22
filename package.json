@@ -28,9 +28,6 @@
     "Abner Chou <hi@abnerchou.me> (http://abnerchou.me)"
   ],
   "license": "MIT",
-  "dependencies": {
-    "nanocolors": "^0.2.12"
-  },
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
@@ -43,5 +40,8 @@
   },
   "engines": {
     "node": ">=12.4.0"
+  },
+  "dependencies": {
+    "picocolors": "^1.0.0"
   }
 }
