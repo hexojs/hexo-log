@@ -310,6 +310,23 @@ describe('hexo-log', () => {
     consoleWarnSpy.calledOnce.should.be.false;
     consoleErrorSpy.calledTwice.should.be.false;
   });
+
+  it('should not display error as object', () => {
+    const consoleWarnSpy = sinon.spy();
+    const consoleErrorSpy = sinon.spy();
+
+    loggerModule.__set__('console.warn', consoleWarnSpy);
+    loggerModule.__set__('console.error', consoleErrorSpy);
+
+    loggerModule.__with__(fakeProcess)(() => {
+      const log = loggerModule();
+      log.warn({err: new Error('test')});
+      log.error({err: new Error('test')}, 'test: %s', 'test');
+    });
+
+    consoleWarnSpy.args[0][0].should.eql('test');
+    consoleErrorSpy.args[0][0].should.eql('test: %s');
+  });
 });
 
 describe('hexo-log example', () => {
