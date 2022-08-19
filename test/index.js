@@ -270,12 +270,13 @@ describe('hexo-log', () => {
         stdout: {
           write: spy
         }
+      },
+      Date: function() {
+        this.toISOString = () => now.toISOString();
       }
     })(() => {
-      sinon.useFakeTimers(now.valueOf());
       const log = loggerModule({ debug: true });
       log.info('test');
-      sinon.restore();
     });
 
     spy.args[0][0].should.contain(now.toISOString().substring(11, 23));
