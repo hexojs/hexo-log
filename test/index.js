@@ -323,8 +323,7 @@ describe('hexo-log', () => {
       log.warn({err: new Error('test')});
       log.error({err: new Error('test')}, 'test: %s', 'test');
     });
-
-    consoleWarnSpy.args[0][0].should.eql('test');
+    consoleWarnSpy.args[0].length.should.eql(0);
     consoleErrorSpy.args[0][0].should.eql('test: %s');
   });
 });
