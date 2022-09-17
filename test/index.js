@@ -23,14 +23,14 @@ const fakeProcess = {
   }
 };
 
-const logger = require('../lib/log');
+const { logger } = require('../dist/log');
 
 describe('hexo-log', () => {
   let loggerModule;
 
   beforeEach(() => {
     sinon.restore();
-    loggerModule = rewire('../lib/log');
+    loggerModule = rewire('../dist/log.js');
   });
 
   it('add alias for levels', () => {
