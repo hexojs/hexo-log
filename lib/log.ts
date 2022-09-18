@@ -37,7 +37,8 @@ type Options = {
   silent?: boolean
 }
 
-type writeLogF = (...args: any[]) => void
+// @ts-ignore
+type writeLogF = (...args: any[]) => void;
 
 class Logger {
 
@@ -52,7 +53,7 @@ class Logger {
 
   constructor({
     debug = false,
-    silent = false,
+    silent = false
   }: Options = {}) {
     this._silent = silent || false;
     this._debug = debug || false;
