@@ -23,7 +23,7 @@ const fakeProcess = {
   }
 };
 
-const { logger } = require('../dist/log.js');
+const { logger } = require('../dist/log');
 
 describe('hexo-log', () => {
   let loggerModule;
