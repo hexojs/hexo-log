@@ -23,6 +23,7 @@ const fakeProcess = {
   }
 };
 
+/* eslint node/no-missing-require: 0 */
 const { logger } = require('../dist/log');
 
 describe('hexo-log', () => {
