@@ -37,11 +37,18 @@ type Options = {
   silent?: boolean
 }
 
+type writeLogF = (...args: any[]) => void
+
 class Logger {
 
   _silent: boolean;
   _debug: boolean;
   level: number;
+  d: writeLogF;
+  i: writeLogF;
+  w: writeLogF;
+  e: writeLogF;
+  log: writeLogF;
 
   constructor({
     debug = false,
@@ -143,15 +150,10 @@ class Logger {
 function createLogger(options: Options) {
   const logger = new Logger(options);
 
-  // @ts-ignore
   logger.d = logger.debug;
-  // @ts-ignore
   logger.i = logger.info;
-  // @ts-ignore
   logger.w = logger.warn;
-  // @ts-ignore
   logger.e = logger.error;
-  // @ts-ignore
   logger.log = logger.info;
 
   return logger;
