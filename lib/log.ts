@@ -140,7 +140,7 @@ class Logger {
   }
 }
 
-export function createLogger(options: Options) {
+function createLogger(options: Options) {
   const logger = new Logger(options);
 
   // @ts-ignore

@@ -48,7 +48,7 @@ describe('hexo-log', () => {
     loggerModule.__set__('console.trace', spy);
 
     loggerModule.__with__(fakeProcess)(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.trace('test');
     });
 
@@ -71,7 +71,7 @@ describe('hexo-log', () => {
         }
       }
     })(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.trace('test');
     });
 
@@ -84,7 +84,7 @@ describe('hexo-log', () => {
     loggerModule.__set__('console.debug', spy);
 
     loggerModule.__with__(fakeProcess)(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.debug('test');
     });
 
@@ -107,7 +107,7 @@ describe('hexo-log', () => {
         }
       }
     })(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.debug('test');
     });
 
@@ -120,7 +120,7 @@ describe('hexo-log', () => {
     loggerModule.__set__('console.info', spy);
 
     loggerModule.__with__(fakeProcess)(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.info('test');
     });
 
@@ -143,7 +143,7 @@ describe('hexo-log', () => {
         }
       }
     })(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.info('test');
     });
 
@@ -156,7 +156,7 @@ describe('hexo-log', () => {
     loggerModule.__set__('console.warn', spy);
 
     loggerModule.__with__(fakeProcess)(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.warn('test');
     });
 
@@ -179,7 +179,7 @@ describe('hexo-log', () => {
         }
       }
     })(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.warn('test');
     });
 
@@ -192,7 +192,7 @@ describe('hexo-log', () => {
     loggerModule.__set__('console.error', spy);
 
     loggerModule.__with__(fakeProcess)(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.error('test');
     });
 
@@ -215,7 +215,7 @@ describe('hexo-log', () => {
         }
       }
     })(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.error('test');
     });
 
@@ -228,7 +228,7 @@ describe('hexo-log', () => {
     loggerModule.__set__('console.error', spy);
 
     loggerModule.__with__(fakeProcess)(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.fatal('test');
     });
 
@@ -251,7 +251,7 @@ describe('hexo-log', () => {
         }
       }
     })(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.fatal('test');
     });
 
@@ -275,7 +275,7 @@ describe('hexo-log', () => {
         this.toISOString = () => now.toISOString();
       }
     })(() => {
-      const log = loggerModule({ debug: true });
+      const log = loggerModule.logger({ debug: true });
       log.info('test');
     });
 
@@ -296,7 +296,7 @@ describe('hexo-log', () => {
     loggerModule.__set__('console.error', consoleErrorSpy);
 
     loggerModule.__with__(fakeProcess)(() => {
-      const log = loggerModule({ silent: true });
+      const log = loggerModule.logger({ silent: true });
       log.trace('test');
       log.debug('test');
       log.info('test');
@@ -320,7 +320,7 @@ describe('hexo-log', () => {
     loggerModule.__set__('console.error', consoleErrorSpy);
 
     loggerModule.__with__(fakeProcess)(() => {
-      const log = loggerModule();
+      const log = loggerModule.logger();
       log.warn({err: new Error('test')});
       log.error({err: new Error('test')}, 'test: %s', 'test');
     });
