@@ -32,7 +32,7 @@ const console = new Console({
   colorMode: false
 });
 
-type Options = {
+interface Options {
   debug?: boolean,
   silent?: boolean
 }
