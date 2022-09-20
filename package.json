@@ -2,7 +2,7 @@
   "name": "hexo-log",
   "version": "3.1.0",
   "description": "Logger for Hexo",
-  "main": "lib/log.js",
+  "main": "dist/log.js",
   "scripts": {
     "prepublish ": "npm run clean && npm run build",
     "build": "tsc -b",
