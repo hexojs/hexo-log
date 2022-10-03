@@ -148,7 +148,7 @@ class Logger {
   }
 }
 
-function createLogger(options: Options) {
+export default function createLogger(options: Options) {
   const logger = new Logger(options);
 
   logger.d = logger.debug;

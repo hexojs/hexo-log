@@ -15,10 +15,17 @@ $ npm install hexo-log --save
 ## Usage
 
 ``` js
+// v3.x.x
 const log = require('hexo-log')({
   debug: false,
   silent: false
-})
+});
+
+// v4.x.x
+const log = require('hexo-log').default({
+  debug: false,
+  silent: false
+});
 
 log.info('Hello world');
 ```
