@@ -1,7 +1,5 @@
-'use strict';
-
-const { Console } = require('console');
-const picocolors = require('picocolors');
+import { Console } from 'console';
+import picocolors from 'picocolors';
 
 const TRACE = 10;
 const DEBUG = 20;
@@ -34,10 +32,31 @@ const console = new Console({
   colorMode: false
 });
 
+interface Options {
+  debug?: boolean,
+  silent?: boolean
+}
+
+// @ts-ignore
+type writeLogF = (...args: any[]) => void;
+
 class Logger {
-  constructor(options = {}) {
-    const silent = options.silent || false;
-    this._debug = options.debug || false;
+
+  _silent: boolean;
+  _debug: boolean;
+  level: number;
+  d: writeLogF;
+  i: writeLogF;
+  w: writeLogF;
+  e: writeLogF;
+  log: writeLogF;
+
+  constructor({
+    debug = false,
+    silent = false
+  }: Options = {}) {
+    this._silent = silent || false;
+    this._debug = debug || false;
 
     this.level = INFO;
 
@@ -129,7 +148,7 @@ class Logger {
   }
 }
 
-function createLogger(options) {
+export default function createLogger(options: Options) {
   const logger = new Logger(options);
 
   logger.d = logger.debug;
@@ -141,4 +160,4 @@ function createLogger(options) {
   return logger;
 }
 
-module.exports = createLogger;
+export const logger = (option: Options) => createLogger(option);
