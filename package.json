@@ -16,8 +16,9 @@
     "lib": "./lib"
   },
   "files": [
-    "lib/"
+    "dist/**"
   ],
+  "types": "./dist/log.d.ts",
   "repository": "hexojs/hexo-log",
   "homepage": "https://hexo.io/",
   "keywords": [
