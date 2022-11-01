@@ -37,8 +37,9 @@ interface Options {
   silent?: boolean
 }
 
-// @ts-ignore
-type writeLogF = (...args: any[]) => void;
+type ConsoleArgs = [object | string, ...string[]];
+
+type writeLogF = (...args: ConsoleArgs) => void;
 
 class Logger {
 
@@ -69,7 +70,7 @@ class Logger {
     }
   }
 
-  _writeLogOutput(level, consoleArgs) {
+  _writeLogOutput(level: number, consoleArgs: ConsoleArgs) {
     let errArg;
     if (typeof consoleArgs[0] === 'object') {
       errArg = consoleArgs.shift();
@@ -123,27 +124,27 @@ class Logger {
     }
   }
 
-  trace(...args) {
+  trace(...args: ConsoleArgs) {
     this._writeLogOutput(TRACE, args);
   }
 
-  debug(...args) {
+  debug(...args: ConsoleArgs) {
     this._writeLogOutput(DEBUG, args);
   }
 
-  info(...args) {
+  info(...args: ConsoleArgs) {
     this._writeLogOutput(INFO, args);
   }
 
-  warn(...args) {
+  warn(...args: ConsoleArgs) {
     this._writeLogOutput(WARN, args);
   }
 
-  error(...args) {
+  error(...args: ConsoleArgs) {
     this._writeLogOutput(ERROR, args);
   }
 
-  fatal(...args) {
+  fatal(...args: ConsoleArgs) {
     this._writeLogOutput(FATAL, args);
   }
 }
