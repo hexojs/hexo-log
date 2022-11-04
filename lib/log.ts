@@ -149,7 +149,7 @@ class Logger {
   }
 }
 
-export default function createLogger(options: Options) {
+export default function createLogger(options: Options = {}) {
   const logger = new Logger(options);
 
   logger.d = logger.debug;
@@ -161,4 +161,4 @@ export default function createLogger(options: Options) {
   return logger;
 }
 
-export const logger = (option: Options) => createLogger(option);
+export const logger = (option: Options = {}) => createLogger(option);

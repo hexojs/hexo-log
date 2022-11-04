@@ -20,13 +20,22 @@ const log = require('hexo-log')({
   debug: false,
   silent: false
 });
+log.info('Hello world');
 
 // v4.x.x
 const log = require('hexo-log').default({
   debug: false,
   silent: false
 });
+log.info('Hello world');
 
+// v4.x.x (ES Module)
+import { logger } from 'hexo-log';
+
+const log = logger({
+  debug: false,
+  silent: false
+});
 log.info('Hello world');
 ```
 
