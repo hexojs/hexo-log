@@ -37,7 +37,7 @@ interface Options {
   silent?: boolean
 }
 
-type ConsoleArgs = [object | string, ...string[]];
+type ConsoleArgs = any[];
 
 type writeLogF = (...args: ConsoleArgs) => void;
 
