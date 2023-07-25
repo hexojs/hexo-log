@@ -1,6 +1,6 @@
 {
   "name": "hexo-log",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Logger for Hexo",
   "main": "dist/log.js",
   "scripts": {
