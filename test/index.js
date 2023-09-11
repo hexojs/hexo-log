@@ -328,6 +328,18 @@ describe('hexo-log', () => {
     consoleWarnSpy.args[0].length.should.eql(0);
     consoleErrorSpy.args[0][0].should.eql('test: %s');
   });
+
+  it('error object with log info', () => {
+    const consoleInfoSpy = sinon.spy();
+
+    loggerModule.__set__('console.info', consoleInfoSpy);
+
+    loggerModule.__with__(fakeProcess)(() => {
+      const log = loggerModule.logger();
+      log.info({err: new Error('test')});
+    });
+    consoleInfoSpy.args[0].length.should.eql(0);
+  });
 });
 
 describe('hexo-log example', () => {
