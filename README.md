@@ -1,8 +1,8 @@
 # hexo-log
 
-[![Build Status](https://github.com/hexojs/hexo-log/workflows/Tester/badge.svg?branch=master)](https://github.com/hexojs/hexo-log/actions?query=workflow%3ATester)
+[![CI](https://github.com/hexojs/hexo-log/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/hexojs/hexo-log/actions/workflows/ci.yml)
 [![NPM version](https://badge.fury.io/js/hexo-log.svg)](https://www.npmjs.com/package/hexo-log)
-[![Coverage Status](https://coveralls.io/repos/hexojs/hexo-log/badge.svg?branch=master)](https://coveralls.io/r/hexojs/hexo-log?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/hexojs/hexo-log/badge.svg)](https://coveralls.io/github/hexojs/hexo-log)
 
 Logger for Hexo.
 
