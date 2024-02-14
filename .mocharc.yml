@@ -1,0 +1,5 @@
+reporter: spec
+parallel: false
+require:
+  - "ts-node/register"
+  - "chai/register-should.js"

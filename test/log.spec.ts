@@ -1,8 +1,7 @@
-'use strict';
 
-require('chai').should();
-const rewire = require('rewire');
-const sinon = require('sinon');
+import rewire from 'rewire';
+import sinon from 'sinon';
+import { logger } from '../lib/log';
 
 const noop = () => {};
 const fakeConsole = {
@@ -23,15 +22,13 @@ const fakeProcess = {
   }
 };
 
-/* eslint node/no-missing-require: 0 */
-const { logger } = require('../dist/log');
 
 describe('hexo-log', () => {
   let loggerModule;
 
   beforeEach(() => {
     sinon.restore();
-    loggerModule = rewire('../dist/log.js');
+    loggerModule = rewire('../lib/log');
   });
 
   it('add alias for levels', () => {
