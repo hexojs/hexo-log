@@ -30,7 +30,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/chai": "^4.3.11",
+    "@types/chai": "^5.0.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "^14.18.63",
     "@types/rewire": "^2.5.30",
